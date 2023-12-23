@@ -35,10 +35,35 @@ struct ContentView: View {
                          return
                     }
                     
+                    guard let tip = Calculation().calculateTip(of: amount, with: tipSlider) else{
+                        print("Bill amount or tip can not be negative")
+                        return
+                    }
+                    tipAmount = tip
+                    totalAmount = amount + tipAmount
                     
                 }
+            VStack{
+                Text(tipAmount, format: .currency(code: "GBP"))
+                    .font(.title.bold())
+                
+                Text("Tip")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
+            .padding(.top, 20)
+            
+            VStack{
+                Text(totalAmount, format: .currency(code: "GBP"))
+                    .font(.title.bold())
+                
+                Text("Total")
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+            }
         }
-                }
+        .padding(30)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -47,6 +72,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+//The below struct is used to seperate the function from the main contentView. The function takes in a parameter of enteredAmount and Tip both being doubles and at the end the funciton returns a double. The guard statement is there to make sure the values are not negative or = to 0. Thes rest is basic maths.
 struct Calculation{
     func calculateTip(of enteredAmount:Double, with tip: Double) -> Double? {
         guard enteredAmount >= 0 && tip >= 0 else {return nil}
