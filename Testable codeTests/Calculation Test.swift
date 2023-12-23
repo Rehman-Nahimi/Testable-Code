@@ -9,6 +9,7 @@ import XCTest
 @testable import Testable_code
 final class Calculation_Test: XCTestCase {
 
+    //You enter an example amount and what should come out.
     func testSuccessfulTipCalculation() {
         //Arragne
         let enteredAmount = 100.00
