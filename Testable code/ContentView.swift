@@ -26,7 +26,7 @@ struct ContentView: View {
                     .keyboardType(.decimalPad)
                     .multilineTextAlignment(.center)
             }
-            Text("Tip: \(tipSlider, specifier: "%.0")")
+            Text("Tip: \(tipSlider, specifier: "%.0f")%")
             
             Slider(value: $tipSlider, in: 0...100, step: 1)
                 .onChange(of: tipSlider){ _ in
