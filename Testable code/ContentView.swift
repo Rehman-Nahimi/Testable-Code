@@ -7,16 +7,28 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    
+    @State private var enteredAmount: String = ""
+    @State private var tipAmount: Double = 0
+    @State private var totalAmount: Double = 0
+    @State private var tipSlider: Double = 10
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack(spacing: 40) {
+            VStack{
+                Text("Enter Bill Amount")
+                    .foregroundColor(.secondary)
+                
+                TextField("0.00", text: $enteredAmount)
+                    .font(.system(size: 70,weight: .semibold,design: .rounded))
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.center)
+            }
+            Text("Tip: \(tipSlider, specifier: "%.0")")
         }
-        .padding()
-    }
+                }
 }
 
 struct ContentView_Previews: PreviewProvider {
