@@ -27,6 +27,16 @@ struct ContentView: View {
                     .multilineTextAlignment(.center)
             }
             Text("Tip: \(tipSlider, specifier: "%.0")")
+            
+            Slider(value: $tipSlider, in: 0...100, step: 1)
+                .onChange(of: tipSlider){ _ in
+                    guard let amount = Double(enteredAmount) else{
+                        print("invalid entry")
+                         return
+                    }
+                    
+                    
+                }
         }
                 }
 }
@@ -34,5 +44,14 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct Calculation{
+    func calculateTip(of enteredAmount:Double, with tip: Double) -> Double? {
+        guard enteredAmount >= 0 && tip >= 0 else {return nil}
+        let tipPercentage = tip / 100
+        return enteredAmount * tipPercentage
+        
     }
 }
